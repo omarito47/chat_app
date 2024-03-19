@@ -3,9 +3,9 @@ import 'package:chat_app/chat/chat_service.dart';
 import 'package:chat_app/components/chat_bubble.dart';
 import 'package:chat_app/components/custom_text_field.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ChatPage extends StatefulWidget {
   final String receiverEmail;
@@ -33,8 +33,48 @@ class _ChatPageState extends State<ChatPage> {
       await _chatService.sendMessage(
           widget.receiverID, _messageController.text);
       // clear textfield
+      scrollDown();
       _messageController.clear();
     }
+  }
+
+  // for textfield focus
+  FocusNode focusNode = FocusNode();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    focusNode.addListener(() {
+      if (focusNode.hasFocus) {
+        Future.delayed(
+          const Duration(milliseconds: 500),
+          () => scrollDown(),
+        );
+      }
+    });
+    // wait a bit for listbiew to be built, then scroll to the bottom
+    Future.delayed(
+      const Duration(milliseconds: 500),
+      () => scrollDown(),
+    );
+  }
+
+  @override
+  void dispose() {
+    focusNode.dispose();
+    _messageController.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  // scroll controller
+  final ScrollController _scrollController = ScrollController();
+  void scrollDown() {
+    _scrollController.animateTo(
+      _scrollController.position.maxScrollExtent + 40,
+      duration: const Duration(seconds: 1),
+      curve: Curves.fastOutSlowIn,
+    );
   }
 
   @override
@@ -48,7 +88,7 @@ class _ChatPageState extends State<ChatPage> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios_new_outlined),
+              icon: const Icon(Icons.arrow_back_ios_new_outlined),
               onPressed: () {
                 Navigator.pop(context);
               })),
@@ -78,14 +118,20 @@ class _ChatPageState extends State<ChatPage> {
         }
         // loading...
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
+          return const Center(
             child: Text("Loading ..."),
           );
         }
-        // return lsit view
+        // return list view
         return ListView(
-          children:
-              snapshot.data!.docs.map((doc) => _buildMessageItem(doc)).toList(),
+          controller: _scrollController,
+          children: snapshot.data!.docs.map((doc) {
+            Future.delayed(
+              const Duration(milliseconds: 500),
+              () => scrollDown(),
+            );
+            return _buildMessageItem(doc);
+          }).toList(),
         );
       },
     );
@@ -97,11 +143,46 @@ class _ChatPageState extends State<ChatPage> {
     // is currrent user
     bool isCurrentUser = data["senderID"] == _authService.getCurrentUser()!.uid;
 
-    var alinment = isCurrentUser ? Alignment.centerRight : Alignment.centerLeft;
+    var alignment =
+        isCurrentUser ? Alignment.centerRight : Alignment.centerLeft;
+
+    // Convert the timestamp to DateTime
+    DateTime timestamp = DateTime.fromMillisecondsSinceEpoch(
+      data["timestamp"].seconds * 1000,
+    );
+// Convert the timestamp to DateTime
+    timestamp = DateTime.fromMillisecondsSinceEpoch(
+      data["timestamp"].seconds * 1000,
+    );
+
+    // Format the DateTime to desired format (YYYY/MM/DD HH:MM)
+    String formattedTimestamp =
+        DateFormat('yyyy/MM/dd HH:mm').format(timestamp);
+
     return Container(
-        alignment: alinment,
-        child:
-            ChatBubble(message: data["message"], isCurrentUser: isCurrentUser));
+      alignment: alignment,
+      child: Column(
+        crossAxisAlignment:
+            isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(16),
+            margin: const EdgeInsets.symmetric(vertical: 2.5, horizontal: 15),
+            child: Text(
+              formattedTimestamp,
+              style: TextStyle(
+                fontSize: 12, // Adjust the font size as needed
+                color: Colors.grey, // Adjust the color as needed
+              ),
+            ),
+          ),
+          ChatBubble(
+            message: data["message"],
+            isCurrentUser: isCurrentUser,
+          ),
+        ],
+      ),
+    );
   }
 
   // build message input
@@ -116,6 +197,7 @@ class _ChatPageState extends State<ChatPage> {
               hintText: 'Type a message',
               obsucureText: false,
               controller: _messageController,
+              focusNode: focusNode,
             ),
           ),
           // send button

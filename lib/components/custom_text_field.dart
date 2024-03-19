@@ -4,11 +4,13 @@ class CustomTextFiled extends StatelessWidget {
   final String hintText;
   final bool obsucureText;
   final TextEditingController controller;
+  final FocusNode? focusNode;
   const CustomTextFiled({
     super.key,
     required this.hintText,
     required this.obsucureText,
     required this.controller,
+    this.focusNode,
   });
 
   @override
@@ -18,6 +20,7 @@ class CustomTextFiled extends StatelessWidget {
       child: TextField(
         controller: controller,
         obscureText: obsucureText,
+        focusNode: focusNode,
         decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
                 borderSide:
