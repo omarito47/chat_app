@@ -7,10 +7,16 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        centerTitle: true,
-        title: Text("Settings"),
-      ),
+          backgroundColor: Colors.transparent,
+          foregroundColor: Colors.grey,
+          elevation: 0,
+          centerTitle: true,
+          title: Text("Settings"),
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios_new_outlined),
+              onPressed: () {
+                Navigator.pop(context);
+              })),
     );
   }
 }

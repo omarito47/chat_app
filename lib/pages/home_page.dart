@@ -5,7 +5,6 @@ import 'package:chat_app/components/user_tile.dart';
 import 'package:chat_app/pages/chat_page.dart';
 import 'package:flutter/material.dart';
 
-
 class HomePage extends StatelessWidget {
   HomePage({super.key});
   final ChatService _chatService = ChatService();
@@ -14,8 +13,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.tertiary,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.grey,
+        elevation: 0,
         centerTitle: true,
         title: const Text("Home"),
       ),
@@ -51,15 +53,22 @@ class HomePage extends StatelessWidget {
   // build individual list tile for user
   Widget _buildUserListItem(
       Map<String, dynamic> userData, BuildContext context) {
-    return UserTile(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) {
-            return ChatPage(receiverEmail: userData["email"],);
-          },
-        ));
-      },
-      text: userData["email"],
-    );
+    if (userData["email"] != _authService.getCurrentUser()!.email) {
+      return UserTile(
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(
+            builder: (context) {
+              return ChatPage(
+                receiverEmail: userData["email"],
+                receiverID: userData["uid"],
+              );
+            },
+          ));
+        },
+        text: userData["email"],
+      );
+    } else {
+      return Container();
+    }
   }
 }
