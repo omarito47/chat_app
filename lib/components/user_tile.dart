@@ -9,6 +9,7 @@ class UserTile extends StatelessWidget {
     required this.onTap,
     required this.text,
   });
+  
 
   @override
   Widget build(BuildContext context) {
