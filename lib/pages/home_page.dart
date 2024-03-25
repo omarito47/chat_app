@@ -10,6 +10,13 @@ class HomePage extends StatelessWidget {
   final ChatService _chatService = ChatService();
   final AuthService _authService = AuthService();
 
+  // extract name from the email
+  String extractNameFromEmail(String email) {
+    int atIndex = email.indexOf('@');
+    String name = email.substring(0, atIndex);
+    return name;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +72,7 @@ class HomePage extends StatelessWidget {
             },
           ));
         },
-        text: userData["email"],
+        text: extractNameFromEmail(userData["email"]),
       );
     } else {
       return Container();

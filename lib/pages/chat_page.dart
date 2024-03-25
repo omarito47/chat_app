@@ -25,6 +25,12 @@ class _ChatPageState extends State<ChatPage> {
   // chat & auth services intances
   final ChatService _chatService = ChatService();
   final AuthService _authService = AuthService();
+  // extract name from the email
+  String extractNameFromEmail(String email) {
+    int atIndex = email.indexOf('@');
+    String name = email.substring(0, atIndex);
+    return name;
+  }
 
   // send message
   Future<void> sendMessage() async {
@@ -59,7 +65,6 @@ class _ChatPageState extends State<ChatPage> {
       const Duration(milliseconds: 500),
       () => scrollDown(),
     );
-   
   }
 
   @override
@@ -85,7 +90,7 @@ class _ChatPageState extends State<ChatPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.tertiary,
       appBar: AppBar(
-        title: Text(widget.receiverEmail),
+        title: Text(extractNameFromEmail(widget.receiverEmail)),
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.grey,
         elevation: 0,
@@ -104,7 +109,9 @@ class _ChatPageState extends State<ChatPage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => AgoraVideoChatWidget(
-                            channelName:  _chatService.getChannelId(widget.receiverID), userName: widget.receiverEmail),
+                            channelName:
+                                _chatService.getChannelId(widget.receiverID),
+                            userName: widget.receiverEmail),
                       ));
                 },
                 icon: Icon(Icons.video_call)),

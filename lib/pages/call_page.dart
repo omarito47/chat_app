@@ -38,16 +38,12 @@ class _AgoraVideoChatWidgetState extends State<AgoraVideoChatWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Agora VideoUIKit'),
-        centerTitle: true,
-      ),
       body: SafeArea(
         child: Stack(
           children: [
             AgoraVideoViewer(
               client: client,
-              layoutType: Layout.floating,
+              layoutType: Layout.oneToOne,
               enableHostControls: true, // Add this to enable host controls
             ),
             AgoraVideoButtons(
