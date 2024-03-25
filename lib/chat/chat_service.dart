@@ -62,4 +62,13 @@ class ChatService {
       .orderBy('timestamp',descending: false)
       .snapshots();
   }
+  // Function to get the chatRoomID
+String getChannelId( String receiveID) {
+  
+  List<String> ids = [ _auth.currentUser!.uid, receiveID];
+  ids.sort();
+  String chatRoomID = ids.join('-');
+  return chatRoomID;
+}
+
 }

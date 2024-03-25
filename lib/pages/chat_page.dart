@@ -2,6 +2,7 @@ import 'package:chat_app/auth/services/auth_service.dart';
 import 'package:chat_app/chat/chat_service.dart';
 import 'package:chat_app/components/chat_bubble.dart';
 import 'package:chat_app/components/custom_text_field.dart';
+import 'package:chat_app/pages/call_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,7 @@ class _ChatPageState extends State<ChatPage> {
 
   // for textfield focus
   FocusNode focusNode = FocusNode();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -57,6 +59,7 @@ class _ChatPageState extends State<ChatPage> {
       const Duration(milliseconds: 500),
       () => scrollDown(),
     );
+   
   }
 
   @override
@@ -82,16 +85,32 @@ class _ChatPageState extends State<ChatPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.tertiary,
       appBar: AppBar(
-          title: Text(widget.receiverEmail),
-          backgroundColor: Colors.transparent,
-          foregroundColor: Colors.grey,
-          elevation: 0,
-          centerTitle: true,
-          leading: IconButton(
-              icon: const Icon(Icons.arrow_back_ios_new_outlined),
-              onPressed: () {
-                Navigator.pop(context);
-              })),
+        title: Text(widget.receiverEmail),
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.grey,
+        elevation: 0,
+        centerTitle: true,
+        leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios_new_outlined),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 15),
+            child: IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AgoraVideoChatWidget(
+                            channelName:  _chatService.getChannelId(widget.receiverID), userName: widget.receiverEmail),
+                      ));
+                },
+                icon: Icon(Icons.video_call)),
+          )
+        ],
+      ),
       body: Column(
         children: [
           // display all messages
