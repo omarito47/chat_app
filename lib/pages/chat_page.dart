@@ -19,6 +19,7 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+  
   // text controller
   final TextEditingController _messageController = TextEditingController();
 
@@ -233,6 +234,15 @@ class _ChatPageState extends State<ChatPage> {
             margin: const EdgeInsets.only(right: 25),
             child: IconButton(
               icon: const Icon(Icons.send),
+              onPressed: sendMessage,
+            ),
+          ),
+          Container(
+            decoration: const BoxDecoration(
+                color: Colors.green, shape: BoxShape.circle),
+            margin: const EdgeInsets.only(right: 25),
+            child: IconButton(
+              icon: const Icon(Icons.mic),
               onPressed: sendMessage,
             ),
           ),
