@@ -2,6 +2,7 @@ import 'package:chat_app/global/services/auth/auth_service.dart';
 import 'package:chat_app/global/services/chat/chat_service.dart';
 import 'package:chat_app/global/components/chat_bubble.dart';
 import 'package:chat_app/global/components/custom_text_field.dart';
+import 'package:chat_app/global/utils/constant_helper.dart';
 import 'package:chat_app/modules/call/call_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -102,7 +103,7 @@ class _ChatPageState extends State<ChatPage> {
             }),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 15),
+            padding:  EdgeInsets.only(right: ConstantHelper.sizex14),
             child: IconButton(
                 onPressed: () {
                   Navigator.push(
@@ -192,12 +193,12 @@ class _ChatPageState extends State<ChatPage> {
             isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.all(16),
-            margin: const EdgeInsets.symmetric(vertical: 2.5, horizontal: 15),
+            padding:  EdgeInsets.all(ConstantHelper.sizex16),
+            margin:  EdgeInsets.symmetric(vertical: ConstantHelper.sizex02, horizontal: ConstantHelper.sizex16),
             child: Text(
               formattedTimestamp,
               style: TextStyle(
-                fontSize: 12, // Adjust the font size as needed
+                fontSize: ConstantHelper.sizex12, // Adjust the font size as needed
                 color: Colors.grey, // Adjust the color as needed
               ),
             ),
@@ -214,7 +215,7 @@ class _ChatPageState extends State<ChatPage> {
   // build message input
   Widget _buildUserInput() {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 30.0),
+      padding:  EdgeInsets.only(bottom: ConstantHelper.sizex30),
       child: Row(
         children: [
           // texfield should take up  most of the space
@@ -230,7 +231,7 @@ class _ChatPageState extends State<ChatPage> {
           Container(
             decoration: const BoxDecoration(
                 color: Colors.green, shape: BoxShape.circle),
-            margin: const EdgeInsets.only(right: 25),
+            margin:  EdgeInsets.only(right: ConstantHelper.sizex25),
             child: IconButton(
               icon: const Icon(Icons.send),
               onPressed: sendMessage,

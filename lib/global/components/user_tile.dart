@@ -1,3 +1,4 @@
+import 'package:chat_app/global/utils/constant_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,25 +17,25 @@ class UserTile extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(20),
-        margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+        padding: EdgeInsets.all(ConstantHelper.sizex20),
+        margin:  EdgeInsets.symmetric(vertical: ConstantHelper.sizex08, horizontal: ConstantHelper.sizex20),
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.secondary,
-            borderRadius: BorderRadius.circular(12)),
+            borderRadius: BorderRadius.circular(ConstantHelper.sizex12)),
         child: Row(
           children: [
             // icon user
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding:  EdgeInsets.all(ConstantHelper.sizex08),
               child: Icon(
                 Icons.person,
                 color: Theme.of(context).colorScheme.onSecondary,
               ),
             ),
-            const SizedBox(width: 20),
+             SizedBox(width: ConstantHelper.sizex20),
             // text
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding:  EdgeInsets.all(ConstantHelper.sizex08),
               child: Text(
                 text,
                 style:

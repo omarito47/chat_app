@@ -1,4 +1,5 @@
 import 'package:chat_app/global/services/auth/auth_service.dart';
+import 'package:chat_app/global/utils/constant_helper.dart';
 import 'package:chat_app/modules/pages/settings_page.dart';
 import 'package:flutter/material.dart';
 
@@ -24,12 +25,12 @@ class MyDrawer extends StatelessWidget {
                 child: Icon(
                   Icons.message,
                   color: Theme.of(context).colorScheme.primary,
-                  size: 40,
+                  size: ConstantHelper.sizex40,
                 ),
               )),
               // home list tile
               Padding(
-                padding: const EdgeInsets.only(left: 25.0),
+                padding:  EdgeInsets.only(left: ConstantHelper.sizex25),
                 child: ListTile(
                   title: Text(
                     "H O M E",
@@ -47,7 +48,7 @@ class MyDrawer extends StatelessWidget {
               ),
               // settings list tile
               Padding(
-                padding: const EdgeInsets.only(left: 25.0),
+                padding:  EdgeInsets.only(left: ConstantHelper.sizex25),
                 child: ListTile(
                   title: Text(
                     "S E T T I N G S",
@@ -62,7 +63,7 @@ class MyDrawer extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => SettingsPage(),
+                          builder: (context) => const SettingsPage(),
                         ));
                   },
                 ),
@@ -71,7 +72,7 @@ class MyDrawer extends StatelessWidget {
           ),
           // logout list tile
           Padding(
-            padding: const EdgeInsets.only(left: 25.0, bottom: 25.0),
+            padding:  EdgeInsets.only(left: ConstantHelper.sizex25, bottom: ConstantHelper.sizex25),
             child: ListTile(
               title: Text(
                 "L O G O U T",

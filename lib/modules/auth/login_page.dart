@@ -1,6 +1,7 @@
 import 'package:chat_app/global/services/auth/auth_service.dart';
 import 'package:chat_app/global/components/custom_button.dart';
 import 'package:chat_app/global/components/custom_text_field.dart';
+import 'package:chat_app/global/utils/constant_helper.dart';
 import 'package:flutter/material.dart';
 
 
@@ -43,11 +44,11 @@ class _LoginPageState extends State<LoginPage> {
             // logo
             Icon(
               Icons.message,
-              size: 60,
+              size: ConstantHelper.sizex60,
               color: Theme.of(context).colorScheme.primary,
             ),
-            const SizedBox(
-              height: 30,
+             SizedBox(
+              height: ConstantHelper.sizex30,
             ),
 
             // welcome back message
@@ -55,12 +56,12 @@ class _LoginPageState extends State<LoginPage> {
               'Welcome Back, you\'ve been missed',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.primary,
-                fontSize: 15,
+                fontSize: ConstantHelper.sizex14,
                 // fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(
-              height: 20,
+             SizedBox(
+              height: ConstantHelper.sizex20,
             ),
             // email textFiled
             CustomTextFiled(
@@ -68,8 +69,8 @@ class _LoginPageState extends State<LoginPage> {
               obsucureText: false,
               controller: _emailController,
             ),
-            const SizedBox(
-              height: 10,
+             SizedBox(
+              height: ConstantHelper.sizex10,
             ),
             // password textFiled
             CustomTextFiled(
@@ -77,13 +78,13 @@ class _LoginPageState extends State<LoginPage> {
               obsucureText: true,
               controller: _pwControlller,
             ),
-            const SizedBox(
-              height: 25,
+             SizedBox(
+              height: ConstantHelper.sizex25,
             ),
             // login button
             CustomButton(onTap: () =>login(context) , text: "Login"),
-            const SizedBox(
-              height: 25,
+             SizedBox(
+              height: ConstantHelper.sizex25,
             ),
             // register now
             Row(

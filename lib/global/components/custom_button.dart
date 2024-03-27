@@ -1,3 +1,4 @@
+import 'package:chat_app/global/utils/constant_helper.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -12,10 +13,10 @@ class CustomButton extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.secondary,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(ConstantHelper.sizex08),
         ),
-        padding: const EdgeInsets.all(25),
-        margin: const EdgeInsets.symmetric(horizontal: 25),
+        padding:  EdgeInsets.all(ConstantHelper.sizex25),
+        margin:  EdgeInsets.symmetric(horizontal: ConstantHelper.sizex25),
         child: Center(
           child: Text(text),
         ),
