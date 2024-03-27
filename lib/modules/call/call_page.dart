@@ -1,5 +1,6 @@
 import 'package:agora_uikit/agora_uikit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class AgoraVideoChatWidget extends StatefulWidget {
   final String channelName;
@@ -21,19 +22,22 @@ class _AgoraVideoChatWidgetState extends State<AgoraVideoChatWidget> {
   @override
   void initState() {
     super.initState();
+ 
     initAgora();
   }
 
   void initAgora() async {
+    String agoraApiKey = dotenv.env['AGORA_API_KEY']! ;
     client = AgoraClient(
       agoraConnectionData: AgoraConnectionData(
-        appId: "84018ededd484e6b8821c26bd528a0a1",
+        appId: agoraApiKey,
         channelName: widget.channelName,
         username: widget.userName,
       ),
     );
     await client.initialize();
   }
+
 
   @override
   Widget build(BuildContext context) {

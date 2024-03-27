@@ -1,6 +1,6 @@
-import 'package:chat_app/auth/services/auth_service.dart';
-import 'package:chat_app/components/custom_button.dart';
-import 'package:chat_app/components/custom_text_field.dart';
+import 'package:chat_app/global/services/auth/auth_service.dart';
+import 'package:chat_app/global/components/custom_button.dart';
+import 'package:chat_app/global/components/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 

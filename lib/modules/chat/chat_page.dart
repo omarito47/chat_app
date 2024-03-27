@@ -1,8 +1,8 @@
-import 'package:chat_app/auth/services/auth_service.dart';
-import 'package:chat_app/chat/chat_service.dart';
-import 'package:chat_app/components/chat_bubble.dart';
-import 'package:chat_app/components/custom_text_field.dart';
-import 'package:chat_app/pages/call_page.dart';
+import 'package:chat_app/global/services/auth/auth_service.dart';
+import 'package:chat_app/global/services/chat/chat_service.dart';
+import 'package:chat_app/global/components/chat_bubble.dart';
+import 'package:chat_app/global/components/custom_text_field.dart';
+import 'package:chat_app/modules/call/call_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -1,8 +1,8 @@
-import 'package:chat_app/auth/services/auth_service.dart';
-import 'package:chat_app/chat/chat_service.dart';
-import 'package:chat_app/components/my_drawer.dart';
-import 'package:chat_app/components/user_tile.dart';
-import 'package:chat_app/pages/chat_page.dart';
+import 'package:chat_app/global/services/auth/auth_service.dart';
+import 'package:chat_app/global/services/chat/chat_service.dart';
+import 'package:chat_app/global/components/my_drawer.dart';
+import 'package:chat_app/global/components/user_tile.dart';
+import 'package:chat_app/modules/chat/chat_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {

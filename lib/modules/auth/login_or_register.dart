@@ -1,5 +1,5 @@
-import 'package:chat_app/pages/login_page.dart';
-import 'package:chat_app/pages/register_page.dart';
+import 'package:chat_app/modules/auth/login_page.dart';
+import 'package:chat_app/modules/auth/register_page.dart';
 import 'package:flutter/material.dart';
 
 
