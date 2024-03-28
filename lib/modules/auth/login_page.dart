@@ -1,8 +1,5 @@
-import 'package:chat_app/global/services/auth/auth_service.dart';
-import 'package:chat_app/global/components/custom_button.dart';
-import 'package:chat_app/global/components/custom_text_field.dart';
-import 'package:chat_app/global/utils/constant_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:chat_app/global/utils/global.dart';
 
 
 class LoginPage extends StatefulWidget {

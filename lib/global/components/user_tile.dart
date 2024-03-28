@@ -1,6 +1,5 @@
-import 'package:chat_app/global/utils/constant_helper.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:chat_app/global/utils/global.dart';
 
 class UserTile extends StatelessWidget {
   final String text;
@@ -10,7 +9,6 @@ class UserTile extends StatelessWidget {
     required this.onTap,
     required this.text,
   });
-  
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +16,9 @@ class UserTile extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(ConstantHelper.sizex20),
-        margin:  EdgeInsets.symmetric(vertical: ConstantHelper.sizex08, horizontal: ConstantHelper.sizex20),
+        margin: EdgeInsets.symmetric(
+            vertical: ConstantHelper.sizex08,
+            horizontal: ConstantHelper.sizex20),
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.secondary,
             borderRadius: BorderRadius.circular(ConstantHelper.sizex12)),
@@ -26,16 +26,16 @@ class UserTile extends StatelessWidget {
           children: [
             // icon user
             Padding(
-              padding:  EdgeInsets.all(ConstantHelper.sizex08),
+              padding: EdgeInsets.all(ConstantHelper.sizex08),
               child: Icon(
                 Icons.person,
                 color: Theme.of(context).colorScheme.onSecondary,
               ),
             ),
-             SizedBox(width: ConstantHelper.sizex20),
+            SizedBox(width: ConstantHelper.sizex20),
             // text
             Padding(
-              padding:  EdgeInsets.all(ConstantHelper.sizex08),
+              padding: EdgeInsets.all(ConstantHelper.sizex08),
               child: Text(
                 text,
                 style:

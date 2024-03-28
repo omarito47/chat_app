@@ -1,13 +1,7 @@
-import 'package:chat_app/global/services/auth/auth_service.dart';
-import 'package:chat_app/global/services/chat/chat_service.dart';
-import 'package:chat_app/global/components/chat_bubble.dart';
-import 'package:chat_app/global/components/custom_text_field.dart';
-import 'package:chat_app/global/utils/constant_helper.dart';
-import 'package:chat_app/modules/call/call_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:chat_app/global/utils/global.dart';
 
 class ChatPage extends StatefulWidget {
   final String receiverEmail;

@@ -1,5 +1,5 @@
-import 'package:chat_app/global/utils/constant_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:chat_app/global/utils/global.dart';
 
 class CustomTextFiled extends StatelessWidget {
   final String hintText;
